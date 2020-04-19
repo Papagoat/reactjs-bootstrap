@@ -1,20 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { selectItem } from '../../../actions';
+import JumboTron from '../../JumboTron';
 import './Info.css';
 
-function Info() {
-    return (
-        <div>
-            <main role="main" className="container">
-                <div className="jumbotron">
-                    <h1>Info Page</h1>
-                    <p className="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Dolore tempore consectetur nisi odit maiores vero expedita laboriosam quis
-                        ipsam. Nesciunt voluptatibus quam provident nisi illum modi maxime quas illo
-                        assumenda.</p>
-                </div>
-            </main>
-        </div>
-    );
+import Button from '../../Button/Button';
+
+const RenderList = (props) => {
+  const [state, setState] = useState(props);
+  return (
+    <ul>
+      {state.type === 'LIST_SELECTED' ? (
+        <h2>{state.payload.value}</h2>
+      ) : (
+        <h2>Select an answer</h2>
+      )}
+      {props.infoList.map((item) => (
+        <li key={item.id} className='my-3'>
+          {item.title}
+          <Button
+            className='ml-2 btn btn-sm btn-primary'
+            name='View Answer &raquo;'
+            onClick={() => setState(selectItem(item))}
+          />
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+function Info(props) {
+  return (
+    <div>
+      <main role='main' className='container'>
+        <JumboTron
+          title='Info Page'
+          content='Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore tempore consectetur nisi odit maiores vero expedita laboriosam quis ipsam. Nesciunt voluptatibus quam provident nisi illum modi maxime quas illo assumenda.'
+        />
+        {RenderList(props)}
+      </main>
+    </div>
+  );
 }
 
-export default Info;
+const mapStateToProps = (state) => {
+  return {
+    infoList: state.infoList,
+  };
+};
+
+export default connect(mapStateToProps, { selectItem })(Info);
