@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navlinks.css';
 
-import { BrowserRouter as Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 function Navlinks(props) {
   return (
