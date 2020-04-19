@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { selectItem } from '../../../actions';
 import JumboTron from '../../JumboTron';
@@ -7,11 +7,10 @@ import './Home.css';
 import Button from '../../Button/Button';
 
 const RenderList = (props) => {
-  const [state, setState] = useState(props);
   return (
     <ul>
-      {state.type === 'LIST_SELECTED' ? (
-        <h2>{state.payload.value}</h2>
+      {props.listItems && props.listItems.homeListSelected ? (
+        <h2>{props.listItems.homeListSelected.value}</h2>
       ) : (
         <h2>Select an answer</h2>
       )}
@@ -21,7 +20,7 @@ const RenderList = (props) => {
           <Button
             className='ml-2 btn btn-sm btn-primary'
             name='View Answer &raquo;'
-            onClick={() => setState(selectItem(item))}
+            onClick={() => props.selectItem('HOMELIST_SELECTED', item)}
           />
         </li>
       ))}
@@ -46,6 +45,7 @@ function Home(props) {
 const mapStateToProps = (state) => {
   return {
     homeList: state.homeList,
+    listItems: state.listItems,
   };
 };
 
