@@ -76,22 +76,10 @@ const infoList = () => {
 };
 
 const listItems = (selectedItem = null, action) => {
-  switch (action.type) {
-    case 'HOMELIST_SELECTED':
-      return {
-        homeListSelected: action.homeListSelected,
-      };
-    case 'ABOUTLIST_SELECTED':
-      return {
-        aboutListSelected: action.aboutListSelected,
-      };
-    case 'INFOLIST_SELECTED':
-      return {
-        infoListSelected: action.infoListSelected,
-      };
-    default:
-      return selectedItem;
+  if (action.type === 'LIST_SELECTED') {
+    return action.payload;
   }
+  return selectedItem;
 };
 
 export default combineReducers({
