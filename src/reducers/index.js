@@ -10,7 +10,7 @@ const homeList = () => {
     {
       id: 2,
       title: 'What do programmers dance to?',
-      value: 'Algorhythms',
+      value: 'Algorhythms.',
     },
     {
       id: 3,
@@ -55,7 +55,7 @@ const infoList = () => {
     {
       id: 1,
       title: `Why don't programmers like nature?`,
-      value: `There's too many bugs`,
+      value: `There's too many bugs.`,
     },
     {
       id: 2,

@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## To Do
 
 - ~~React Router~~
-- Redux
+- ~Redux~
 - Integration with Node JS and MongoDB
 
 This boilerplate is incomplete. Use with caution.
